@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import logging
 
+from homeassistant.helpers import config_validation as cv
 from pyhap.characteristic import (
     PROP_VALID_VALUES,
     Characteristic,
@@ -24,6 +25,8 @@ from pyhap.characteristic import (
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = "pyhap_override_quiet"
+
+CONFIG_SCHEMA = cv.empty_config_schema(DOMAIN)
 
 
 def _override_properties_quiet(

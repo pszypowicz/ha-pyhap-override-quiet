@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "pyhap override_properties quiet patch",
+        "description": "Confirm to install the pyhap.characteristic.Characteristic.override_properties monkey-patch. No further configuration is needed - the patch is applied at every Home Assistant start."
+      }
+    },
+    "abort": {
+      "already_configured": "The patch is already installed."
+    }
+  }
+}

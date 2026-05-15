@@ -10,21 +10,28 @@ defaults to StayArmed=0 but valid_values excludes 0).
 Replace override_properties with an equivalent that performs the membership
 check directly. See ikalchev/HAP-python#473 for the upstream issue and
 pszypowicz/HAP-python#1 for the proposed fix.
+
+The integration registers a config flow so it can be added via the UI without
+any configuration.yaml entry. An existing yaml entry is migrated to a config
+entry automatically on the next HA start.
 """
 from __future__ import annotations
 
 import logging
 
+from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers import config_validation as cv
+from homeassistant.helpers.typing import ConfigType
 from pyhap.characteristic import (
     PROP_VALID_VALUES,
     Characteristic,
     _validate_properties,
 )
 
-_LOGGER = logging.getLogger(__name__)
+from .const import DOMAIN
 
-DOMAIN = "pyhap_override_quiet"
+_LOGGER = logging.getLogger(__name__)
 
 CONFIG_SCHEMA = cv.empty_config_schema(DOMAIN)
 
@@ -72,5 +79,24 @@ _LOGGER.warning(
 )
 
 
-async def async_setup(hass, config) -> bool:
+async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
+    """Migrate a legacy configuration.yaml entry to a config entry."""
+    if DOMAIN in config:
+        hass.async_create_task(
+            hass.config_entries.flow.async_init(
+                DOMAIN,
+                context={"source": SOURCE_IMPORT},
+                data={},
+            )
+        )
+    return True
+
+
+async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Set up from a config entry. The patch was already applied at module load."""
+    return True
+
+
+async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
+    """Unload the config entry. The monkey-patch remains active until HA restart."""
     return True

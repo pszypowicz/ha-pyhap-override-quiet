@@ -24,21 +24,22 @@ WARNING (ImportExecutor_0) [custom_components.pyhap_override_quiet]
 
 ## Install
 
-1. Clone (or copy) into your HA config directory so the resulting path is `/config/custom_components/pyhap_override_quiet/`:
-   ```
-   cd /config/custom_components
-   git clone https://github.com/pszypowicz/ha-pyhap-override-quiet.git
-   mv ha-pyhap-override-quiet/custom_components/pyhap_override_quiet ./
-   rm -rf ha-pyhap-override-quiet
-   ```
-   (Or use HACS as a custom repository.)
+### Via HACS (recommended)
 
-2. Add this line to `configuration.yaml` so HA imports the module at startup:
+1. In Home Assistant, open HACS → 3-dot menu (top right) → **Custom repositories**.
+2. Add `https://github.com/pszypowicz/ha-pyhap-override-quiet` with type **Integration**, then click **ADD**.
+3. Find "pyhap override_properties quiet patch" in the HACS integrations list and click **Download**.
+4. Add the following line to `configuration.yaml` so HA imports the module at startup:
    ```yaml
    pyhap_override_quiet: {}
    ```
+5. Restart Home Assistant. Look for the `Patched pyhap.characteristic.Characteristic.override_properties` WARNING in the log to confirm the patch is active.
 
-3. Restart Home Assistant. Look for the `Patched pyhap.characteristic.Characteristic.override_properties` WARNING in the log.
+### Manual
+
+1. Copy `custom_components/pyhap_override_quiet/` from this repo into your HA config so the resulting path is `/config/custom_components/pyhap_override_quiet/`.
+2. Add `pyhap_override_quiet: {}` to `configuration.yaml`.
+3. Restart Home Assistant; check for the confirmation WARNING in the log.
 
 ## Compatibility
 

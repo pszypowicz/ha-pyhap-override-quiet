@@ -9,7 +9,7 @@ ERROR (MainThread) [pyhap.characteristic] SecuritySystemCurrentState: value=0 is
 ERROR (MainThread) [pyhap.characteristic] SecuritySystemTargetState:  value=0 is an invalid value.
 ```
 
-The integration works fine; pyhap is over-eager about logging an expected recovery path. See [HAP-python#473](https://github.com/ikalchev/HAP-python/issues/473) and [home-assistant/core#130564](https://github.com/home-assistant/core/issues/130564) / [#156142](https://github.com/home-assistant/core/issues/156142).
+The integration works fine; pyhap is over-eager about logging an expected recovery path. See [ikalchev/HAP-python#473](https://github.com/ikalchev/HAP-python/issues/473), [home-assistant/core#130564](https://github.com/home-assistant/core/issues/130564), and [home-assistant/core#156142](https://github.com/home-assistant/core/issues/156142).
 
 ## What this does
 
@@ -51,7 +51,7 @@ Targets `pyhap` (HAP-python) as bundled with current Home Assistant Core. The mo
 
 ## When to remove
 
-When [HAP-python#473](https://github.com/ikalchev/HAP-python/issues/473) lands upstream AND a new pyhap release ships AND HA core bumps its pyhap requirement, this shim becomes redundant. Remove the directory and the configuration.yaml line; restart; verify zero `pyhap.characteristic ... invalid value` errors.
+When [ikalchev/HAP-python#473](https://github.com/ikalchev/HAP-python/issues/473) lands upstream AND a new pyhap release ships AND HA core bumps its pyhap requirement, this shim becomes redundant. Remove the directory and the configuration.yaml line; restart; verify zero `pyhap.characteristic ... invalid value` errors.
 
 ## Icon attribution
 

@@ -55,9 +55,11 @@ Targets `pyhap` (HAP-python) as bundled with current Home Assistant Core. The mo
 
 When [ikalchev/HAP-python#473](https://github.com/ikalchev/HAP-python/issues/473) lands upstream AND a new pyhap release ships AND HA core bumps its pyhap requirement, this shim becomes redundant. Remove the directory and the configuration.yaml line; restart; verify zero `pyhap.characteristic ... invalid value` errors.
 
-## Icon attribution
+## Icon
 
-The integration icon (`custom_components/pyhap_override_quiet/brand/icon.png` and `icon@2x.png`) is the official Home Assistant `homekit` integration icon from [home-assistant/brands](https://github.com/home-assistant/brands/tree/master/core_integrations/homekit), used under the brands repository's MIT license. Reused here because this integration is a HomeKit-domain patch.
+The integration icon (`custom_components/pyhap_override_quiet/brand/icon.png` and `icon@2x.png`) is an original mark - a muted-speaker glyph signalling "quiet" - authored for this repository. Source SVG is at `icon.svg`. It is deliberately not derived from Home Assistant or HomeKit branding, per the [home-assistant/brands](https://github.com/home-assistant/brands) guideline that custom integrations must not use Home Assistant branded images.
+
+On Home Assistant 2026.3.0+ the icon is served directly from the integration's `brand/` directory via the Brands Proxy API. The HACS store UI still resolves icons from the `brands.home-assistant.io` CDN, so until HACS adopts the proxy API the icon will not appear in the HACS list - this is cosmetic and does not affect the integration.
 
 ## License
 

@@ -15,12 +15,14 @@ The integration works fine; pyhap is over-eager about logging an expected recove
 
 At startup the component imports `pyhap.characteristic` and replaces `Characteristic.override_properties` with an equivalent that performs the membership check directly instead of going through `valid_value_or_raise` (which logs at ERROR before raising, even though the caller catches and recovers). Result: zero spurious ERROR lines, same behavior.
 
-A `WARNING` log on every HA start confirms the patch is active:
+An `INFO` log on every HA start confirms the patch is active:
 
 ```
-WARNING (ImportExecutor_0) [custom_components.pyhap_override_quiet]
-  Patched pyhap.characteristic.Characteristic.override_properties (was Characteristic.override_properties)
+INFO (MainThread) [custom_components.pyhap_override_quiet]
+  pyhap.characteristic.Characteristic.override_properties patch active
 ```
+
+(Detailed before/after info is available at `DEBUG` level if you enable it via `logger:` in `configuration.yaml`.)
 
 ## Install
 

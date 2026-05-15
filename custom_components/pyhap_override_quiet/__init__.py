@@ -70,12 +70,12 @@ def _override_properties_quiet(
         self.value = candidate
 
 
-_ORIGINAL = Characteristic.override_properties
+_ORIGINAL_OVERRIDE_PROPERTIES = Characteristic.override_properties
 Characteristic.override_properties = _override_properties_quiet
-_LOGGER.warning(
+_LOGGER.debug(
     "Patched pyhap.characteristic.Characteristic.override_properties "
     "(was %s)",
-    _ORIGINAL.__qualname__,
+    _ORIGINAL_OVERRIDE_PROPERTIES.__qualname__,
 )
 
 
@@ -93,7 +93,10 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Set up from a config entry. The patch was already applied at module load."""
+    """Confirm at INFO level that the import-time patch is active."""
+    _LOGGER.info(
+        "pyhap.characteristic.Characteristic.override_properties patch active"
+    )
     return True
 
 

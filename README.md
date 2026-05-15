@@ -57,9 +57,9 @@ When [ikalchev/HAP-python#473](https://github.com/ikalchev/HAP-python/issues/473
 
 ## Icon
 
-The integration icon (`custom_components/pyhap_override_quiet/brand/icon.png` and `icon@2x.png`) is an original mark - a muted-speaker glyph signalling "quiet" - authored for this repository. Source SVG is at `icon.svg`. It is deliberately not derived from Home Assistant or HomeKit branding, per the [home-assistant/brands](https://github.com/home-assistant/brands) guideline that custom integrations must not use Home Assistant branded images.
+The integration icon (`custom_components/pyhap_override_quiet/brand/icon.png` and `icon@2x.png`) is the `bug-check` glyph from [Material Design Icons](https://pictogrammers.com/library/mdi/) (Apache-2.0), composited on a neutral slate tile. Source SVG is at `icon.svg`. It is deliberately not derived from Home Assistant or HomeKit branding, per the [home-assistant/brands](https://github.com/home-assistant/brands) guideline that custom integrations must not use Home Assistant branded images.
 
-On Home Assistant 2026.3.0+ the icon is served directly from the integration's `brand/` directory via the Brands Proxy API. The HACS store UI still resolves icons from the `brands.home-assistant.io` CDN, so until HACS adopts the proxy API the icon will not appear in the HACS list - this is cosmetic and does not affect the integration.
+On Home Assistant 2026.3.0+ the icon is served directly from the integration's `brand/` directory via the Brands Proxy API. The HACS store UI still resolves icons from the `brands.home-assistant.io` CDN, so until either HACS adopts the proxy API or the domain is added to the brands repository, the icon will not appear in the HACS list - this is cosmetic and does not affect the integration.
 
 ## License
 
